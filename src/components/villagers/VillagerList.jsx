@@ -1,9 +1,21 @@
-import React, { useContext } from 'react';
+/* eslint-disable max-len */
+import React, {  useEffect } from 'react';
 import Villager from './Villager';
-import VillagerProvider from '../../hooks/VillagerProvider';
+import { fetchApi } from '../../services/animalCrossingApi';
+import { useLoading, useSetLoading, useSetVillagers, useVillagers } from '../../hooks/VillagerProvider';
 
 const VillagerList = () => {
-  const { loading, villagers } = useContext(VillagerProvider);
+  const loading = useLoading();
+  const setLoading = useSetLoading();
+  const villagers = useVillagers();
+  const setVillagers = useSetVillagers();
+
+  useEffect(() => {
+    fetchApi()
+      .then((villagersArr) => setVillagers(villagersArr))
+      .then(() => setLoading(false));
+  }, []);
+
   if(loading) return <h1>Now Loading...</h1>;
   return (
     <ul role="list" aria-label="villagers">

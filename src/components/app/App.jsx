@@ -1,12 +1,12 @@
 import React from 'react';
 import VillagerList from '../villagers/VillagerList';
 import VillagerDetail from '../villagers/VillagerDetail';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import VillagerProvider from '../../hooks/VillagerProvider';
 
 export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <header>
         <nav>
           <Link to="/"> Home </Link>
@@ -22,6 +22,6 @@ export default function App() {
           </Route>
         </VillagerProvider>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
