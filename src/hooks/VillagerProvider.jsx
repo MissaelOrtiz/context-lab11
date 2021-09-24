@@ -15,9 +15,9 @@ const VillagerProvider = ({ children }) => {
   }, []);
 
   return (
-    <VillagerProvider.Provider value={{ loading, villagers }}>
+    <VillagerContext.Provider value={{ loading, villagers }}>
       {children}
-    </VillagerProvider.Provider>
+    </VillagerContext.Provider>
   );
 };
 
