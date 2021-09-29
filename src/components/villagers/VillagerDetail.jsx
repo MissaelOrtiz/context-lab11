@@ -1,8 +1,21 @@
-import React, { useContext } from 'react';
-import VillagerProvider from '../../hooks/VillagerProvider';
+/* eslint-disable max-len */
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { useLoading, useSetLoading, useSetVillager, useVillager } from '../../hooks/VillagerProvider';
+import { fetchVillager } from '../../services/animalCrossingApi';
 
 const VillagerDetail = () => {
-  const { loading, villager } = useContext(VillagerProvider);
+  const loading = useLoading();
+  const setLoading = useSetLoading();
+  const villager = useVillager();
+  const setVillager = useSetVillager();
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchVillager(id)
+      .then((villager) => setVillager(villager))
+      .finally(() => setLoading(false));
+  }, [id]);
 
   if(loading) return <h1>Now Loading...</h1>;
   return (

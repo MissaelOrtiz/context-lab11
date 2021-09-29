@@ -7,9 +7,10 @@ export const VillagerContext = createContext();
 const VillagerProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [villagers, setVillagers] = useState([]);
+  const [villager, setVillager] = useState({});
 
   return (
-    <VillagerContext.Provider value={{ loading, setLoading, villagers, setVillagers }}>
+    <VillagerContext.Provider value={{ loading, setLoading, villagers, setVillagers, villager, setVillager }}>
       {children}
     </VillagerContext.Provider>
   );
@@ -18,6 +19,11 @@ const VillagerProvider = ({ children }) => {
 export const useSetVillagers = () => {
   const { setVillagers } = useContext(VillagerContext);
   return setVillagers;
+};
+
+export const useSetVillager = () => {
+  const { setVillager } = useContext(VillagerContext);
+  return setVillager;
 };
 
 export const useSetLoading = () => {
@@ -33,6 +39,11 @@ export const useVillagers = () => {
 export const useLoading = () => {
   const { loading } = useContext(VillagerContext);
   return loading;
+};
+
+export const useVillager = () => {
+  const { villager } = useContext(VillagerContext);
+  return villager;
 };
 
 VillagerProvider.propTypes = {
